@@ -44,7 +44,7 @@ GRANT INSERT ON wedel.suppliers TO manager;
 GRANT INSERT ON wedel.users TO admin;
 GRANT DELETE ON wedel.users TO admin;
 
-GRANT SELECT, LOCK TABLES ON alkohurt.* TO 'admin'@'localhost';
-GRANT DROP, CREATE, ALTER ON alkohurt.* TO 'admin'@'localhost';
+GRANT SELECT, LOCK TABLES ON wedel.* TO 'admin'@'localhost';
+GRANT DROP, CREATE, ALTER ON wedel.* TO 'admin'@'localhost';
 GRANT SUPER ON *.* TO 'admin'@'localhost';
-GRANT SELECT on alkohurt.users TO 'app'@'localhost';
+GRANT SELECT on wedel.users TO 'app'@'localhost';
