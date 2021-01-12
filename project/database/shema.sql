@@ -3,102 +3,102 @@ CREATE DATABASE if not exists wedel;
 USE wedel;
 
 CREATE TABLE products (
-                          id         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                          type       enum ('chocolate', 'candy', 'jelly candy', 'chocolate bar'),
-                          price      decimal(5, 2) UNSIGNED,
-                          quantity   int UNSIGNED
+    id         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    type       enum ('chocolate', 'candy', 'jelly candy', 'chocolate bar'),
+    price      decimal(5, 2) UNSIGNED,
+    quantity   int UNSIGNED
 );
 
 CREATE TABLE chocolates (
-                            id         int NOT NULL PRIMARY KEY,
-                            name       varchar(50),
-                            producer   varchar(50),
-                            type       enum ('bitter', 'milky', 'white'),
-                            flavour    varchar(50),
-                            mass       int UNSIGNED,
-                            FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
+    id         int NOT NULL PRIMARY KEY,
+    name       varchar(50),
+    producer   varchar(50),
+    type       enum ('bitter', 'milky', 'white'),
+    flavour    varchar(50),
+    mass       int UNSIGNED,
+    FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
 );
 
 CREATE TABLE candies (
-                         id         int NOT NULL PRIMARY KEY,
-                         name       varchar(50),
-                         producer   varchar(50),
-                         type       varchar(50),
-                         flavour    varchar(50),
-                         mass       int UNSIGNED,
-                         FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
+    id         int NOT NULL PRIMARY KEY,
+    name       varchar(50),
+    producer   varchar(50),
+    type       varchar(50),
+    flavour    varchar(50),
+    mass       int UNSIGNED,
+    FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
 );
 
 CREATE TABLE jellyCandies (
-                              id         int NOT NULL PRIMARY KEY,
-                              name       varchar(50),
-                              producer   varchar(50),
-                              type       varchar(50),
-                              flavour    varchar(50),
-                              mass       int UNSIGNED,
-                              FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
+    id         int NOT NULL PRIMARY KEY,
+    name       varchar(50),
+    producer   varchar(50),
+    type       varchar(50),
+    flavour    varchar(50),
+    mass       int UNSIGNED,
+    FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
 );
 
 CREATE TABLE chocolateBars (
-                               id         int NOT NULL PRIMARY KEY,
-                               name       varchar(50),
-                               producer   varchar(50),
-                               flavour    varchar(50),
-                               mass       int UNSIGNED,
-                               FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
+    id         int NOT NULL PRIMARY KEY,
+    name       varchar(50),
+    producer   varchar(50),
+    flavour    varchar(50),
+    mass       int UNSIGNED,
+    FOREIGN KEY (id) REFERENCES products (id) ON DELETE CASCADE
 );
 
 CREATE TABLE users (
-                       login    varchar(50) PRIMARY KEY,
-                       password varchar(255),
-                       type     enum ('admin', 'manager', 'worker')
+    login    varchar(50) PRIMARY KEY,
+    password varchar(255),
+    type     enum ('admin', 'manager', 'worker')
 );
 
 CREATE TABLE suppliers (
-                           supplierId        int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                           name              varchar(50),
-                           nip               char(10)
+    supplierId        int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name              varchar(50),
+    nip               char(10)
 );
 
 CREATE TABLE supplies (
-                          supplyId    int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                          date        date,
-                          supplierId  int,
-                          done        boolean,
-                          FOREIGN KEY (supplierId) REFERENCES suppliers (supplierId)
+    supplyId    int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    date        date,
+    supplierId  int,
+    done        boolean,
+    FOREIGN KEY (supplierId) REFERENCES suppliers (supplierId)
 );
 
 CREATE TABLE suppliesInfo (
-                              id         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                              productId  int,
-                              supplyId   int,
-                              quantity   int UNSIGNED,
-                              FOREIGN KEY (productId) REFERENCES products (id),
-                              FOREIGN KEY (supplyId) REFERENCES supplies (supplyId) ON DELETE CASCADE
+    id         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    productId  int,
+    supplyId   int,
+    quantity   int UNSIGNED,
+    FOREIGN KEY (productId) REFERENCES products (id),
+    FOREIGN KEY (supplyId) REFERENCES supplies (supplyId) ON DELETE CASCADE
 );
 
 CREATE TABLE clients (
-                         clientId          int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                         name              varchar(50),
-                         city              varchar(50),
-                         street_and_number varchar(50)
+    clientId          int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name              varchar(50),
+    city              varchar(50),
+    street_and_number varchar(50)
 );
 
 CREATE TABLE sales (
-                       saleId    int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                       date      date,
-                       clientId  int,
-                       done      boolean,
-                       FOREIGN KEY (clientId) REFERENCES clients (clientId)
+    saleId    int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    date      date,
+    clientId  int,
+    done      boolean,
+    FOREIGN KEY (clientId) REFERENCES clients (clientId)
 );
 
 CREATE TABLE salesInfo (
-                           id         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                           productId  int,
-                           saleId     int,
-                           quantity   int UNSIGNED,
-                           FOREIGN KEY (productId) REFERENCES products (id),
-                           FOREIGN KEY (saleId) REFERENCES sales (saleId) ON DELETE CASCADE
+    id         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    productId  int,
+    saleId     int,
+    quantity   int UNSIGNED,
+    FOREIGN KEY (productId) REFERENCES products (id),
+    FOREIGN KEY (saleId) REFERENCES sales (saleId) ON DELETE CASCADE
 );
 
 DELIMITER //
@@ -107,9 +107,9 @@ CREATE PROCEDURE addProduct(IN type_in ENUM('chocolate', 'candy', 'jelly candy',
 BEGIN
     INSERT INTO products(type, price, quantity)
     VALUES (
-               type_in,
-               price_in,
-               quantity_in
+                type_in,
+                price_in,
+                quantity_in
            );
     SELECT last_insert_id() INTO id;
 END //
