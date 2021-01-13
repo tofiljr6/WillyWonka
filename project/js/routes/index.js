@@ -82,12 +82,12 @@ router.get('/add-chocolate', function (req, res) {
   }
 });
 
-router.post('/addChocolate', async function (req, res) {
+router.post('/add_chocolate', async function (req, res) {
   if (req.session.type === 'manager' || req.session.type === 'admin') {
-    try {
-      await controller.addChocolate(req.session.type, req.body.name, req.body.producer, req.body.type, req.body.flavour, req.body.mass, req.body.price)
+      await controller.addChocolate(req.session.type, req.body.name, req.body.producer, req.body.type, req.body.flavour,
+          req.body.mass, req.body.price)
         .then((e) => {
-          console.log(e);
+          // console.log(e);
           res.json({
             succeeded: 1,
             message: 'Chocolate added'
@@ -100,9 +100,6 @@ router.post('/addChocolate', async function (req, res) {
             message: e.message
           });
         });
-    } catch (e) {
-      console.log(e);
-    }
   } else if (req.session.login) {
     res.redirect('/');
   } else {

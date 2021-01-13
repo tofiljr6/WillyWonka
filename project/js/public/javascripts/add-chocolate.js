@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
 
 function sendRequest() {
   let xhr = new XMLHttpRequest();
-  xhr.open('POST', '/addChocolate', true);
+  xhr.open('POST', '/add_chocolate', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onload = function() {
     let response = JSON.parse(xhr.responseText);
