@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Add beer</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <script src="/javascripts/setBodyPadding.js"></script>
+    <script src="/javascripts/add-beer.js"></script>
+</head>
+<body>
+<% include navbar %>
+<div class="container form">
+    <h1>Add beer</h1>
+    <div id="messageBox">
+    </div>
+    <form>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-form-label" for="nameInput">Name</label>
+                <input type="text" class="form-control" placeholder="Harnaś" id="nameInput" required="required"
+                       name="name">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="brewInput">Brewery</label>
+                <input type="text" class="form-control" placeholder="Okocim" id="brewInput" required="required"
+                       name="brew">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="abvInput">Alcohol by volume (%)</label>
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="11"
+                       id="abvInput" required="required" name="abv">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="typeInput">Type</label>
+                <input type="text" class="form-control" placeholder="Type" id="typeInput" required="required"
+                       name="type">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="capacityInput">Capacity (ml)</label>
+                <input type="number" step="1" min="0" class="form-control" placeholder="500"
+                       id="capacityInput" required="required" name="capacity">
+            </div>
+
+            <div class="form-group">
+                <label for="containerSelect">Container type</label>
+                <select class="form-control" id="containerSelect" name="container_type">
+                    <option>bottle</option>
+                    <option>can</option>
+                    <option>returnable</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="priceInput">Price</label>
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="2.99" id="priceInput"
+                       required="required" name="price">
+            </div>
+
+            <div class="buttons">
+                <button onclick="location.href='/'" type="button" class="btn btn-primary btn-lg ">Back</button>
+                <button id="submit" type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<% include footer.ejs %>
+</body>
+</html>

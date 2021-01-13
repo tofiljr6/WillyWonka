@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Custom query</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/setBodyPadding.js"></script>
+    <script src="/javascripts/custom-query.js"></script>
+    <script src="/javascripts/tableify.js"></script>
+    <script>
+        let schema = <%- JSON.stringify(schema)%>;
+    </script>
+</head>
+<%include navbar.ejs%>
+<body>
+<div class="container form" >
+    <h1>Custom query</h1>
+    <form>
+        <fieldset>
+            <div class="col-form-label">
+                <label for="tableSelect">Table</label>
+                <div class="form-group product">
+                    <select class="form-control" required id="tableSelect" onchange="">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="column0">Columns</label>
+                <div id="columnsDiv">
+                    <select class="form-control" id="column0">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Query result</div>
+                    <div class="card-body">
+                        <h2 id="query"></h2>
+                        <div id="tableDiv">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button onclick="location.href='/'" type="button" class="btn btn-primary btn-lg ">Back</button>
+                <button id="selectAll" type="button" class="btn btn-primary btn-lg">Select *</button>
+                <button id="addColumn" type="button" class="btn btn-primary btn-lg">Add column</button>
+                <button id="submit" type="button" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<%include footer.ejs%>
+</body>
+</html>

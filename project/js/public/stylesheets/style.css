@@ -1,0 +1,100 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, "Comic Sans MS", Arial, sans-serif;
+  background-image: url('../images/wheat.png');
+  min-height: 100%;
+  position: relative;
+}
+
+html {
+  height: 100%;
+}
+
+.link {
+  margin: 10px;
+}
+
+.framka {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.form {
+  max-width: 800px !important;
+  margin-top: 30px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 5px;
+  max-width: 400px;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#status {
+  color: red;
+}
+
+#user {
+  color: green;
+}
+
+#quantity {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-custom {
+  display: flex;
+  justify-content: space-around;
+  background-color: #061d24 !important;
+}
+
+#nav-title {
+  margin: 0;
+}
+
+.footer-custom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: #061d24;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+#col2 {
+  text-align: right;
+}
+
+.footer-container {
+  min-width: 76%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-link {
+  color: #a88989;
+}
+
+.footer-link:hover {
+  color: #686969;
+}

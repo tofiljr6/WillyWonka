@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlkoHurt</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <script src="/javascripts/setBodyPadding.js"></script>
+</head>
+<body>
+<% include navbar %>
+<div class="framka">
+    <div class="container main">
+        <p id="status"><%= message %></p>
+
+        <a class="btn btn-primary link" href="/add-client">Add client</a>
+        <a class="btn btn-primary link" href="/plan-supply">Plan supply</a>
+        <a class="btn btn-primary link" href="/plan-sale">Plan sale</a>
+        <a class="btn btn-primary link" href="/update-supply">Update supply</a>
+        <a class="btn btn-primary link" href="/update-sale">Update sale</a>
+        <a class="btn btn-primary link" href="/show-quantity">Show quantity</a>
+        <a class="btn btn-primary link" href="/custom-query">Custom query</a>
+    </div>
+</div>
+<% include footer %>
+</body>
+</html>
