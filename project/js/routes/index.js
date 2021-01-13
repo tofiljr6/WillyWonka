@@ -107,9 +107,9 @@ router.post('/add_chocolate', async function (req, res) {
   }
 });
 
-router.get('/add-beer', function (req, res) {
+router.get('/add-candies', function (req, res) {
   if (req.session.type === 'manager' || req.session.type === 'admin') {
-    res.render('add-beer', {
+    res.render('add-candies', {
       nick: req.session.login
     });
   } else if (req.session.login) {
@@ -119,14 +119,14 @@ router.get('/add-beer', function (req, res) {
   }
 });
 
-router.post('/add_beer', async function (req, res) {
+router.post('/add_candies', async function (req, res) {
   if (req.session.type === 'manager' || req.session.type === 'admin') {
-    await controller.addBeer(req.session.type, req.body.name, req.body.brew, req.body.abv, req.body.type,
-      req.body.capacity, req.body.container_type, req.body.price)
+    await controller.addCandy(req.session.type, req.body.name, req.body.producer, req.body.type, req.body.flavour,
+      req.body.mass,  req.body.price)
       .then(() => {
         res.json({
           succeeded: 1,
-          message: 'Beer added'
+          message: 'Candies added'
         });
       })
       .catch(e => {

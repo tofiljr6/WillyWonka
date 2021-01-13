@@ -72,14 +72,14 @@ async function addChocolate(userType, name, producer, type, flavour, mass, price
   await conn.query(query, [name, producer, type, flavour, mass, price]);
   conn.end();
 }
-/*
+
 async function addCandy(userType, name, producer, type, flavour, mass, price) {
   const conn = await pool[userType].getConnection();
   const query = 'CALL addCandy(?, ?, ?, ?, ?, ?)';
   await conn.query(query, [name, producer, type, flavour, mass, price]);
   conn.end();
 }
-
+/*
 async function addJellyCandy(userType, name, producer, type, flavour, mass, price) {
   const conn = await pool[userType].getConnection();
   const query = 'CALL addJellyCandy(?, ?, ?, ?, ?, ?)';
@@ -477,5 +477,5 @@ async function deleteUser(user) {
 }
 */
 module.exports = {
-  addSupplier, addUser, login, addClient, addChocolate
+  addSupplier, addUser, login, addClient, addChocolate, addCandy
 }

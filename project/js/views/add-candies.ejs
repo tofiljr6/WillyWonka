@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Add candies</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <script src="/javascripts/setBodyPadding.js"></script>
+    <script src="/javascripts/add-candies.js"></script>
+</head>
+<body>
+<% include navbar %>
+<div class="container form">
+    <h1>Add candies</h1>
+    <div id="messageBox">
+    </div>
+    <form>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-form-label" for="nameInput">Name</label>
+                <input type="text" class="form-control" placeholder="Kukułki" id="nameInput" required="required"
+                       name="name">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="producerInput">Producer</label>
+                <input type="text" class="form-control" placeholder="Wedel" id="producerInput" required="required"
+                       name="producer">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="typeInput">Type</label>
+                <input type="text" class="form-control" placeholder="twarde"
+                       id="typeInput" required="required" name="type">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for=flavourInput">Flavour</label>
+                <input type="text" class="form-control" placeholder="podłużne" id="flavourInput" required="required"
+                       name="flavour">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="massInput">Mass</label>
+                <input type="number" step="1" min="0" class="form-control" placeholder="250"
+                       id="massInput" required="required" name="mass">
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="priceInput">Price</label>
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="3.99" id="priceInput"
+                       required="required" name="price">
+            </div>
+
+            <div class="buttons">
+                <button onclick="location.href='/'" type="button" class="btn btn-primary btn-lg ">Back</button>
+                <button id="submit" type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<% include footer.ejs %>
+</body>
+</html>

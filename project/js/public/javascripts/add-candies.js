@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
 
 function sendRequest() {
   let xhr = new XMLHttpRequest();
-  xhr.open('POST', '/add_beer', true);
+  xhr.open('POST', '/add_candies', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onload = function() {
     let response = JSON.parse(xhr.responseText);
@@ -13,20 +13,18 @@ function sendRequest() {
     }
   };
   let name = document.getElementById('nameInput').value;
-  let brew = document.getElementById('brewInput').value;
-  let abv = document.getElementById('abvInput').value;
+  let producer = document.getElementById('producerInput').value;
   let type = document.getElementById('typeInput').value;
-  let capacity = document.getElementById('capacityInput').value;
-  let container_type = document.getElementById('containerSelect').value;
+  let flavour = document.getElementById('flavourInput').value;
+  let mass = document.getElementById('massInput').value;
   let price = document.getElementById('priceInput').value;
 
   xhr.send(JSON.stringify({
     name: name,
-    brew: brew,
-    abv: abv,
+    producer: producer,
     type: type,
-    capacity: capacity,
-    container_type: container_type,
+    flavour: flavour,
+    mass: mass,
     price: price
   }));
 }
