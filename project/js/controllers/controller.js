@@ -253,6 +253,8 @@ async function addUser(userType, login, password, type) {
   conn.end();
 }
 
+// addUser('admin', 'admin', '1234', 'admin');
+
 async function login(login, password, session) {
   const conn = await pool['app'].getConnection();
   const query = 'SELECT password, type FROM users WHERE login = ?';
