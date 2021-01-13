@@ -134,7 +134,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE innerAddChocolate(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50), IN type_in ENUM('bitter', 'milky', 'white'),
-                                   IN flavour_in INT UNSIGNED, mass_in INT UNSIGNED)
+                                   IN flavour_in varchar(50), mass_in INT UNSIGNED)
 BEGIN
     INSERT INTO chocolates(id, producer, name, type, flavour, mass)
     VALUES (
@@ -150,7 +150,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE OR REPLACE PROCEDURE addChocolate(IN name VARCHAR(50), IN producer VARCHAR(50), IN type ENUM('bitter', 'milky', 'white'),
-                                         IN flavour INT UNSIGNED, mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
+                                         IN flavour varchar(50), mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
 BEGIN
     IF chocolateAlreadyExists(name, producer, type, flavour, mass) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Chocolate already exists';
@@ -184,7 +184,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE innerAddCandy(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50), IN type_in VARCHAR(50),
-                               IN flavour_in INT UNSIGNED, mass_in INT UNSIGNED)
+                               IN flavour_in varchar(50), mass_in INT UNSIGNED)
 BEGIN
     INSERT INTO candies(id, producer, name, type, flavour, mass)
     VALUES (
@@ -200,7 +200,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE OR REPLACE PROCEDURE addCandy(IN name VARCHAR(50), IN producer VARCHAR(50), IN type VARCHAR(50),
-                                     IN flavour INT UNSIGNED, mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
+                                     IN flavour varchar(50), mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
 BEGIN
     IF candyAlreadyExists(name, producer, type, flavour, mass) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Candy already exists';
@@ -232,9 +232,10 @@ BEGIN
 END //
 DELIMITER ;
 
+
 DELIMITER //
 CREATE PROCEDURE innerAddJellyCandy(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50), IN type_in VARCHAR(50),
-                                    IN flavour_in INT UNSIGNED, mass_in INT UNSIGNED)
+                                    IN flavour_in varchar(50), mass_in INT UNSIGNED)
 BEGIN
     INSERT INTO jellyCandies(id, producer, name, type, flavour, mass)
     VALUES (
@@ -250,7 +251,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE OR REPLACE PROCEDURE addJellyCandy(IN name VARCHAR(50), IN producer VARCHAR(50), IN type VARCHAR(50),
-                                          IN flavour INT UNSIGNED, mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
+                                          IN flavour varchar(50), mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
 BEGIN
     IF jellyCandyAlreadyExists(name, producer, type, flavour, mass) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Jelly candy already exists';
@@ -283,7 +284,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE innerAddChocolateBar(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50),
-                                      IN flavour_in INT UNSIGNED, mass_in INT UNSIGNED)
+                                      IN flavour_in varchar(50), mass_in INT UNSIGNED)
 BEGIN
     INSERT INTO chocolateBars(id, producer, name, flavour, mass)
     VALUES (
@@ -298,7 +299,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE OR REPLACE PROCEDURE addChocolateBar(IN name VARCHAR(50), IN producer VARCHAR(50),
-                                            IN flavour INT UNSIGNED, mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
+                                            IN flavour varchar(50), mass INT UNSIGNED, IN price DECIMAL(5, 2) UNSIGNED)
 BEGIN
     IF chocolateBarAlreadyExists(name, producer, flavour, mass) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Chocolate bar already exists';
