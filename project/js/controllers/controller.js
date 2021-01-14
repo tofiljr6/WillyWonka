@@ -422,11 +422,11 @@ function restore(backupName) {
     }
   });
 }
-
+*/
 async function getSchema(type) {
   const conn = await pool[type].getConnection();
   let result = null;
-  await conn.query('SELECT table_name, column_name FROM `INFORMATION_SCHEMA`.`columns` WHERE table_schema = "alkohurt" AND table_name <> "users"')
+  await conn.query('SELECT table_name, column_name FROM `INFORMATION_SCHEMA`.`columns` WHERE table_schema = "wedel" AND table_name <> "users"')
     .then(schema => {
       result = schema;
     }).catch(err => {
@@ -458,6 +458,7 @@ async function customQuery(queryData, type) {
   return result;
 }
 
+
 async function getUsers() {
   const conn = await pool['admin'].getConnection();
   const query = 'SELECT login FROM users';
@@ -467,13 +468,15 @@ async function getUsers() {
   return result;
 }
 
+
 async function deleteUser(user) {
   const conn = await pool['admin'].getConnection();
   const query = 'DELETE FROM users WHERE login = ?';
   await conn.query(query, [user]);
   conn.end();
 }
-*/
+
 module.exports = {
-  addSupplier, addUser, login, addClient, addChocolate, addCandy, addJellyCandy, addChocolateBar
+  addSupplier, addUser, login, addClient, addChocolate, addCandy, addJellyCandy,
+  addChocolateBar, customQuery, getSchema, getUsers, deleteUser
 }
