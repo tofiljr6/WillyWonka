@@ -395,10 +395,11 @@ async function quantityOnDate(type, product_id, date) {
   conn.end();
   return quantity;
 }
-
+*/
 function createBackup() {
   const date = new Date();
-  exec('mysqldump -u admin -padminpassword alkohurt', (error, stdout, stderr) => {
+  exec('mysqldump -u admin -padminpassword wedel', (error, stdout, stderr) => {
+  // exec('mysqldump -u admin -p wedel', (error, stdout, stderr) => {
     if (error) {
       console.log(error);
     }
@@ -415,14 +416,15 @@ async function getBackups() {
   return await fs.readdirSync('./backups') || [];
 }
 
+
 function restore(backupName) {
-  exec(`mysql -u admin -padminpassword alkohurt < ./backups/${backupName}`, (err, stdout, stderr) => {
+  exec(`mysql -u admin -padminpassword wedel < ./backups/${backupName}`, (err, stdout, stderr) => {
     if (err) {
       console.log(err);
     }
   });
 }
-*/
+
 async function getSchema(type) {
   const conn = await pool[type].getConnection();
   let result = null;
@@ -478,5 +480,5 @@ async function deleteUser(user) {
 
 module.exports = {
   addSupplier, addUser, login, addClient, addChocolate, addCandy, addJellyCandy,
-  addChocolateBar, customQuery, getSchema, getUsers, deleteUser
+  addChocolateBar, customQuery, getSchema, getUsers, deleteUser, restore, getBackups, createBackup
 }
