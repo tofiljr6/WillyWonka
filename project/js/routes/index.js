@@ -143,9 +143,9 @@ router.post('/add_candies', async function (req, res) {
   }
 });
 
-router.get('/add-liquor', function (req, res) {
+router.get('/add-jellyCandies', function (req, res) {
   if (req.session.type === 'manager' || req.session.type === 'admin') {
-    res.render('add-liquor', {
+    res.render('add-jellyCandies', {
       nick: req.session.login
     });
   } else if (req.session.login) {
@@ -155,14 +155,15 @@ router.get('/add-liquor', function (req, res) {
   }
 });
 
-router.post('/add_liquor', async function (req, res) {
+router.post('/add_jellyCandies', async function (req, res) {
   if (req.session.type === 'manager' || req.session.type === 'admin') {
     try {
-      await controller.addLiquor(req.session.type, req.body.name, req.body.type, req.body.abv, req.body.capacity, req.body.price)
+      await controller.addJellyCandy(req.session.type, req.body.name, req.body.producer, req.body.type, req.body.flavour,
+          req.body.mass,  req.body.price)
         .then(() => {
           res.json({
             succeeded: 1,
-            message: 'Liquor added'
+            message: 'Jelly candies added'
           });
         })
         .catch(e => {
@@ -172,6 +173,46 @@ router.post('/add_liquor', async function (req, res) {
             message: e.message
           });
         });
+    } catch (e) {
+      console.log(e);
+    }
+  } else if (req.session.login) {
+    res.redirect('/');
+  } else {
+    res.redirect('/login');
+  }
+});
+
+router.get('/add-chocolateBar', function (req, res) {
+  if (req.session.type === 'manager' || req.session.type === 'admin') {
+    res.render('add-chocolateBar', {
+      nick: req.session.login
+    });
+  } else if (req.session.login) {
+    res.redirect('/');
+  } else {
+    res.redirect('/login');
+  }
+});
+
+router.post('/add_chocolateBar', async function (req, res) {
+  if (req.session.type === 'manager' || req.session.type === 'admin') {
+    try {
+      await controller.addChocolateBar(req.session.type, req.body.name, req.body.producer, req.body.flavour,
+          req.body.mass,  req.body.price)
+          .then(() => {
+            res.json({
+              succeeded: 1,
+              message: 'Chocolate bar added'
+            });
+          })
+          .catch(e => {
+            console.log(e);
+            res.json({
+              succeeded: 0,
+              message: e.message
+            });
+          });
     } catch (e) {
       console.log(e);
     }

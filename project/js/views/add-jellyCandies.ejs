@@ -1,43 +1,42 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf8">
-    <title>Add candies</title>
+    <title>Add jelly candies</title>
     <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
     <script src="/javascripts/setBodyPadding.js"></script>
-    <script src="/javascripts/add-candies.js"></script>
+    <script src="/javascripts/add-jellyCandies.js"></script>
 </head>
 <body>
 <% include navbar %>
 <div class="container form">
-    <h1>Add candies</h1>
+    <h1>Add liqour</h1>
     <div id="messageBox">
     </div>
     <form>
         <fieldset>
             <div class="form-group">
                 <label class="col-form-label" for="nameInput">Name</label>
-                <input type="text" class="form-control" placeholder="Kukułki" id="nameInput" required="required"
+                <input type="text" class="form-control" placeholder="misie" id="nameInput" required="required"
                        name="name">
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" for="producerInput">Producer</label>
-                <input type="text" class="form-control" placeholder="Wedel" id="producerInput" required="required"
+                <input type="text" class="form-control" placeholder="Haribo" id="producerInput" required="required"
                        name="producer">
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" for="typeInput">Type</label>
-                <input type="text" class="form-control" placeholder="twarde"
+                <input type="text" class="form-control" placeholder="misie"
                        id="typeInput" required="required" name="type">
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" for=flavourInput">Flavour</label>
-                <input type="text" class="form-control" placeholder="karmelowe" id="flavourInput" required="required"
+                <input type="text" class="form-control" placeholder="coca-cola" id="flavourInput" required="required"
                        name="flavour">
             </div>
 
@@ -60,6 +59,6 @@
         </fieldset>
     </form>
 </div>
-<% include footer.ejs %>
+<% include footer %>
 </body>
 </html>

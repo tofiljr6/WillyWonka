@@ -79,7 +79,7 @@ async function addCandy(userType, name, producer, type, flavour, mass, price) {
   await conn.query(query, [name, producer, type, flavour, mass, price]);
   conn.end();
 }
-/*
+
 async function addJellyCandy(userType, name, producer, type, flavour, mass, price) {
   const conn = await pool[userType].getConnection();
   const query = 'CALL addJellyCandy(?, ?, ?, ?, ?, ?)';
@@ -93,7 +93,7 @@ async function addChocolateBar(userType, name, producer, flavour, mass, price) {
   await conn.query(query, [name, producer, flavour, mass, price]);
   conn.end();
 }
-
+/*
 async function getNames(type) {
   const conn = await pool[type].getConnection();
   const types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
@@ -252,8 +252,6 @@ async function addUser(userType, login, password, type) {
   });
   conn.end();
 }
-
-// addUser('admin', 'admin', '1234', 'admin');
 
 async function login(login, password, session) {
   const conn = await pool['app'].getConnection();
@@ -477,5 +475,5 @@ async function deleteUser(user) {
 }
 */
 module.exports = {
-  addSupplier, addUser, login, addClient, addChocolate, addCandy
+  addSupplier, addUser, login, addClient, addChocolate, addCandy, addJellyCandy, addChocolateBar
 }
