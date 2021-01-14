@@ -22,7 +22,7 @@ function addNewProductField() {
   let labeledContainer = document.createElement('div');
   let container = document.createElement('div');
   let select = document.createElement('select');
-  let types = ['Beers', 'Wines', 'Liquors'];
+  let types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
   let defaultOption = document.createElement('option');
 
   let label = document.createElement('label');
@@ -89,7 +89,7 @@ function setSecondarySelect(container) {
       for (let t of obj.data) {
         let option = document.createElement('option');
         option.value = t.product_id;
-        option.appendChild(document.createTextNode(t.name + " " + t.capacity + "ml"));
+        option.appendChild(document.createTextNode(t.name + " " + t.mass + "g"));
         nameSelect.appendChild(option);
       }
     }
@@ -112,7 +112,7 @@ function updateProductsData(container) {
   try {
     supplyData.products[container.id] = {
       category: container.children[0].value,
-      product_id: container.children[1].value,
+      id: container.children[1].value,
       quantity: container.children[2].value
     };
   } catch (e) {
