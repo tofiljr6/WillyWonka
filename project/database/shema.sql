@@ -2,12 +2,20 @@ CREATE DATABASE if not exists wedel;
 
 USE wedel;
 
+set foreign_key_checks = 1;
+drop table products;
+
+
 CREATE TABLE products (
     id         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name       varchar(50),
+    mass       int UNSIGNED,
     type       enum ('chocolate', 'candy', 'jelly candy', 'chocolate bar'),
     price      decimal(5, 2) UNSIGNED,
     quantity   int UNSIGNED
 );
+
+# delete from supplies where done like '%';
 
 CREATE TABLE chocolates (
     id         int NOT NULL PRIMARY KEY,
@@ -101,13 +109,17 @@ CREATE TABLE salesInfo (
     FOREIGN KEY (saleId) REFERENCES sales (saleId) ON DELETE CASCADE
 );
 
+
 DELIMITER //
 CREATE PROCEDURE addProduct(IN type_in ENUM('chocolate', 'candy', 'jelly candy', 'chocolate bar'),
+                            IN name_in VARCHAR(50), IN mass_in INT UNSIGNED,
                             IN price_in DECIMAL(5, 2) UNSIGNED, IN quantity_in INT UNSIGNED, OUT id INT)
 BEGIN
-    INSERT INTO products(type, price, quantity)
+    INSERT INTO products(type, name, mass, price, quantity)
     VALUES (
                 type_in,
+                name_in,
+                mass_in,
                 price_in,
                 quantity_in
            );
@@ -157,7 +169,7 @@ BEGIN
     ELSE
         SET AUTOCOMMIT = 0;
         START TRANSACTION;
-        CALL addProduct('chocolate', price, 0, @id);
+        CALL addProduct('chocolate', name, mass, price, 0, @id);
         CALL innerAddChocolate(@id, name, producer, type, flavour, mass);
         COMMIT;
         SET AUTOCOMMIT = 1;
@@ -207,7 +219,7 @@ BEGIN
     ELSE
         SET AUTOCOMMIT = 0;
         START TRANSACTION;
-        CALL addProduct('candy', price, 0, @id);
+        CALL addProduct('candy', name, mass, price, 0, @id);
         CALL innerAddCandy(@id, name, producer, type, flavour, mass);
         COMMIT;
         SET AUTOCOMMIT = 1;
@@ -258,7 +270,7 @@ BEGIN
     ELSE
         SET AUTOCOMMIT = 0;
         START TRANSACTION;
-        CALL addProduct('jelly candy', price, 0, @id);
+        CALL addProduct('jelly candy', name, mass, price, 0, @id);
         CALL innerAddJellyCandy(@id, name, producer, type, flavour, mass);
         COMMIT;
         SET AUTOCOMMIT = 1;
@@ -306,7 +318,7 @@ BEGIN
     ELSE
         SET AUTOCOMMIT = 0;
         START TRANSACTION;
-        CALL addProduct('chocolate bar', price, 0, @id);
+        CALL addProduct('chocolate bar', name, mass, price, 0, @id);
         CALL innerAddChocolateBar(@id, name, producer, flavour, mass);
         COMMIT;
         SET AUTOCOMMIT = 1;

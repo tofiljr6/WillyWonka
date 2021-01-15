@@ -32,7 +32,7 @@ function setSecondarySelect() {
     if (type.name === typeSelect.value) {
       for (let product of type.data) {
         let option = document.createElement('option');
-        option.value = product.product_id;
+        option.value = product.id; // todo!!!!!
         option.appendChild(document.createTextNode(product.name));
         nameSelect.appendChild(option);
       }

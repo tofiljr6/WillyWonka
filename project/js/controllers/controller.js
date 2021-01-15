@@ -276,7 +276,7 @@ async function login(login, password, session) {
 
   return session;
 }
-/*
+
 async function getSupplies(type) {
   const conn = await pool[type].getConnection();
 
@@ -292,12 +292,12 @@ async function getSupplies(type) {
         supply_id: supply_id,
         date: (await conn.query('SELECT date FROM supplies WHERE supplyId = ?', [supply_id]))[0].date,
         supplier: (await conn.query(
-          'SELECT name FROM supplies JOIN suppliers ON supplies.supplier_id = suppliers.supplier_id WHERE supply_id = ?',
+          'SELECT name FROM supplies JOIN suppliers ON supplies.supplierId = suppliers.supplierId WHERE supplyId = ?',
           [supply_id]
         ))[0].name,
-        products: (await conn.query('SELECT name, capacity, s.quantity' +
-          ' FROM supplies_info s JOIN products p on s.product_id = p.product_id ' +
-          ' WHERE supply_id = ?', [supply_id]))
+        products: (await conn.query('SELECT name, mass, s.quantity' +
+          ' FROM suppliesInfo s JOIN products p on s.productId = p.id ' +
+          ' WHERE supplyId = ?', [supply_id]))
       });
     } catch (e) {
       console.log(e);
@@ -312,7 +312,7 @@ async function getSupplies(type) {
 async function updateSupply(type, supply_id) {
   const conn = await pool[type].getConnection();
   try {
-    await conn.query('CALL update_supply(?)', [supply_id]);
+    await conn.query('CALL updateSupply(?)', [supply_id]);
     conn.end();
   } catch (e) {
     console.log(e);
@@ -320,7 +320,7 @@ async function updateSupply(type, supply_id) {
     throw new Error(e.message);
   }
 }
-
+/*
 async function getSales(type) {
   const conn = await pool[type].getConnection();
 
@@ -368,14 +368,14 @@ async function updateSale(type, sale_id) {
 */
 async function getProducts(type) {
   const conn = await pool[type].getConnection();
-  const types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar']
+  const types = ['chocolates', 'candies', 'jellyCandies', 'chocolateBars'];
   let productsData = [];
 
   for (type of types) {
     try {
       productsData.push({
         name: type,
-        data: (await conn.query(`SELECT product_id, name, capacity FROM ${type}`))
+        data: (await conn.query(`SELECT id, name, mass FROM ${type}`))
       });
     } catch (e) {
       console.log(e);
@@ -393,7 +393,7 @@ async function quantityOnDate(type, product_id, date) {
   const conn = await pool[type].getConnection();
   let quantity = null;
 
-  await conn.query('SELECT quantity_on_date(?, ?) as quantity', [product_id, date])
+  await conn.query('SELECT quantityOnDate(?, ?) as quantity', [product_id, date])
     .then(e => {
       quantity = e[0].quantity;
     }).catch(e => {
@@ -489,5 +489,5 @@ async function deleteUser(user) {
 module.exports = {
   addSupplier, addUser, login, addClient, addChocolate, addCandy, addJellyCandy,
   addChocolateBar, customQuery, getSchema, getUsers, deleteUser, restore, getBackups, createBackup, quantityOnDate,
-  getProducts, planSale, getPlanSaleData, getNames, planSupply
+  getProducts, planSale, getPlanSaleData, getNames, planSupply, updateSupply, getSupplies
 }
