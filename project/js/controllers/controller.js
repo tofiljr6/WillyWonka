@@ -93,10 +93,11 @@ async function addChocolateBar(userType, name, producer, flavour, mass, price) {
   await conn.query(query, [name, producer, flavour, mass, price]);
   conn.end();
 }
-/*
+
 async function getNames(type) {
   const conn = await pool[type].getConnection();
-  const types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
+  // const types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
+  const types = ['chocolates', 'candies', 'jellyCandies', 'chocolateBars'];
   let productsData = [];
   let suppliers = [];
   try {
@@ -134,7 +135,8 @@ async function getNames(type) {
 
 async function getPlanSaleData(type) {
   const conn = await pool[type].getConnection();
-  const types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
+  const types = ['chocolates', 'candies', 'jellyCandies', 'chocolateBars'];
+  // const types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
   let productsData = [];
   let clients = [];
 
@@ -209,6 +211,7 @@ async function planSale(type, saleData) {
 
 async function planSupply(type, supplyData) {
   const supplier_id = supplyData.supplier;
+  // const supplier_id = 2;
   const date = supplyData.date;
   const products = supplyData.products;
 
@@ -223,6 +226,8 @@ async function planSupply(type, supplyData) {
     .then(async () => {
       const newSupply =
         'INSERT INTO supplies(date, supplierId, done) VALUES (?, ?, ?)';
+
+      console.log(supplyData);
 
       await conn.query(newSupply, [date, supplier_id, false])
         .then(async (e) => {
@@ -239,11 +244,14 @@ async function planSupply(type, supplyData) {
       conn.commit();
     }).catch(e => {
       console.log(e);
+      console.log("TUTAJ DAJE FULLA");
+      console.log(supplyData);
+      console.log(supplier_id)
     });
 
   conn.end();
 }
-*/
+
 async function addUser(userType, login, password, type) {
   const conn = await pool[userType].getConnection();
   await bcrypt.hash(password, 10, async function (err, hashPassword) {
@@ -357,10 +365,10 @@ async function updateSale(type, sale_id) {
     throw new Error(e.message);
   }
 }
-
+*/
 async function getProducts(type) {
   const conn = await pool[type].getConnection();
-  const types = ['beers', 'wines', 'liquors'];
+  const types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar']
   let productsData = [];
 
   for (type of types) {
@@ -395,7 +403,7 @@ async function quantityOnDate(type, product_id, date) {
   conn.end();
   return quantity;
 }
-*/
+
 function createBackup() {
   const date = new Date();
   exec('mysqldump -u admin -padminpassword wedel', (error, stdout, stderr) => {
@@ -480,5 +488,6 @@ async function deleteUser(user) {
 
 module.exports = {
   addSupplier, addUser, login, addClient, addChocolate, addCandy, addJellyCandy,
-  addChocolateBar, customQuery, getSchema, getUsers, deleteUser, restore, getBackups, createBackup
+  addChocolateBar, customQuery, getSchema, getUsers, deleteUser, restore, getBackups, createBackup, quantityOnDate,
+  getProducts, planSale, getPlanSaleData, getNames, planSupply
 }

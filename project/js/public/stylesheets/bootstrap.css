@@ -29,7 +29,8 @@
   --primary: #375a7f;
   --secondary: #444;
   --success: #00bc8c;
-  --info: #3498DB;
+  /*--info: #3498DB;*/
+  --info: #217f15;
   --warning: #F39C12;
   --danger: #E74C3C;
   --light: #303030;
@@ -2045,7 +2046,7 @@ pre code {
   border-color: #739ac2;
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
-          box-shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
 }
 
 .form-control::-webkit-input-placeholder {
@@ -2610,7 +2611,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #375a7f;
+  /*background-color: #375a7f;*/
+  background-color: #3a2500;
   border-color: #375a7f;
 }
 

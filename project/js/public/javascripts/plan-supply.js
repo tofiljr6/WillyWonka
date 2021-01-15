@@ -22,7 +22,8 @@ function addNewProductField() {
   let labeledContainer = document.createElement('div');
   let container = document.createElement('div');
   let select = document.createElement('select');
-  let types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
+  // let types = ['chocolate', 'candy', 'jelly candy', 'chocolate bar'];
+  let types = ['chocolates', 'candies', 'jellyCandies', 'chocolateBars'];
   let defaultOption = document.createElement('option');
 
   let label = document.createElement('label');
@@ -85,10 +86,11 @@ function setSecondarySelect(container) {
   });
 
   for (let obj of data.productsData) {
-    if (container.children[0].value.toLowerCase() === obj.name) {
+    // if (container.children[0].value.toLowerCase() === obj.name) {
+    if (container.children[0].value === obj.name) {
       for (let t of obj.data) {
         let option = document.createElement('option');
-        option.value = t.product_id;
+        option.value = t.id; // product_id
         option.appendChild(document.createTextNode(t.name + " " + t.mass + "g"));
         nameSelect.appendChild(option);
       }
@@ -127,15 +129,21 @@ function updateProductsData(container) {
 function fillSuppliersSelect() {
   let supplierSelect = document.getElementById('supplierSelect');
 
+  console.log("supplier supplier supplier!");
+
   for (let supplier of data.suppliers) {
     let option = document.createElement('option');
-    option.value = supplier.supplier_id;
+    option.value = supplier.supplierId;
     option.appendChild(document.createTextNode(supplier.name));
     supplierSelect.appendChild(option);
   }
 }
 
 function sendRequest() {
+  //todo delet this!
+  // supplyData.supplier=2;
+  // supplyData.products[0].id = 1;
+
   let xhr = new XMLHttpRequest();
   xhr.open('POST', '/plan_supply', true);
   xhr.setRequestHeader('Content-Type', 'application/json');

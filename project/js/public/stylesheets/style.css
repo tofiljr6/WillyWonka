@@ -1,8 +1,20 @@
 body {
   font: 14px "Lucida Grande", Helvetica, "Comic Sans MS", Arial, sans-serif;
-  background-image: url('../images/wheat.png');
+  /*background-image: url('../images/wheat.png');*/
+  /*background-image: url('https://www.vecteezy.com/free-vector/candy-pattern');*/
   min-height: 100%;
   position: relative;
+  opacity: 1;
+  /*background-color: #e7e7f3;*/
+  /*opacity: 1;*/
+  /*background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e7e7f3 26px ), repeating-linear-gradient( #c7d9f155, #c7d9f1 );*/
+  /*background-color: #000000;*/
+  /*opacity: 0.8;*/
+  /*background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #000000 20px ), repeating-linear-gradient( #0711d855, #0711d8 );*/
+  background-color: #D2691E;
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #8183a9, #D2691E), repeating-radial-gradient(circle at center center, #8183a9, #8183a9, 20px, transparent 40px, transparent 20px);
+  background-blend-mode: multiply;
 }
 
 html {
@@ -63,7 +75,8 @@ html {
 .navbar-custom {
   display: flex;
   justify-content: space-around;
-  background-color: #061d24 !important;
+  background-color: #a36700 !important;
+  /*background-color: #061d24 !important;*/
 }
 
 #nav-title {
@@ -75,7 +88,8 @@ html {
   bottom: 0;
   width: 100%;
   padding: 1rem;
-  background-color: #061d24;
+  background-color: #a36700;
+  /*background-color: #061d24;*/
   display: flex;
   justify-content: center;
   margin-top: 30px;
@@ -92,7 +106,7 @@ html {
 }
 
 .footer-link {
-  color: #a88989;
+  color: #ffb645;
 }
 
 .footer-link:hover {
