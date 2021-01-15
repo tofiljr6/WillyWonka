@@ -22,7 +22,7 @@ function fillClientsSelect() {
 
   for (let client of data.clients) {
     let option = document.createElement('option');
-    option.value = client.client_id;
+    option.value = client.clientId;
     option.appendChild(document.createTextNode(client.name));
     clientSelect.appendChild(option);
   }
@@ -33,7 +33,7 @@ function addNewProductField () {
   let labeledContainer = document.createElement('div');
   let container = document.createElement('div');
   let select = document.createElement('select');
-  let types = ['candies', 'chocolateBars', 'chocolate', 'jellyCandies'];
+  let types = ['chocolates', 'candies', 'jellyCandies', 'chocolateBars'];
   let defaultOption = document.createElement('option');
 
   let label = document.createElement('label');
@@ -125,7 +125,7 @@ function setSecondarySelect(container) {
       for (let t of obj.data) {
         let option = document.createElement('option');
         option.value = JSON.stringify({
-          product_id: t.id,
+          id: t.id, // todo - id
           quantity: t.quantity
         });
         option.appendChild(document.createTextNode(t.name + " " + t.mass + "g"));
@@ -147,7 +147,7 @@ function updateProductsData(container) {
   try {
     saleData.products[container.id] = {
       category: container.children[0].value,
-      product_id: JSON.parse(container.children[1].value).id,
+      id: JSON.parse(container.children[1].value).id,
       quantity: container.children[2].value
     };
     console.log('Products data of sale data updated.');

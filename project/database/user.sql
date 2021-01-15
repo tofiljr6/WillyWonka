@@ -45,6 +45,8 @@ GRANT INSERT ON wedel.users TO admin;
 GRANT DELETE ON wedel.users TO admin;
 
 GRANT SELECT, INSERT, LOCK TABLES ON wedel.* TO 'admin'@'localhost';
+GRANT SELECT ON wedel.sales TO 'worker'@'localhost';
+GRANT SELECT ON wedel.* TO 'worker'@'localhost';
 GRANT DROP, CREATE, ALTER ON wedel.* TO 'admin'@'localhost';
 GRANT SUPER ON *.* TO 'admin'@'localhost';
 GRANT SELECT on wedel.users TO 'app'@'localhost';

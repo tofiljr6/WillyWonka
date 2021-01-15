@@ -326,6 +326,7 @@ BEGIN
 END //
 DELIMITER ;
 
+
 DELIMITER //
 CREATE TRIGGER updateQuantitySupplies AFTER UPDATE ON supplies FOR EACH ROW
 BEGIN
@@ -340,6 +341,8 @@ BEGIN
 END //
 DELIMITER ;
 
+show triggers;
+
 DELIMITER //
 CREATE TRIGGER deleteProducts AFTER DELETE ON products FOR EACH ROW
 BEGIN
@@ -349,6 +352,10 @@ BEGIN
     DELETE FROM chocolateBars WHERE chocolateBars.id = OLD.id;
 END //
 DELIMITER ;
+
+drop trigger updateQuantitySales;
+show triggers;
+
 
 DELIMITER //
 CREATE TRIGGER updateQuantitySales AFTER UPDATE ON sales FOR EACH ROW

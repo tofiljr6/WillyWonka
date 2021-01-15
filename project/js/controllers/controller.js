@@ -326,7 +326,7 @@ async function getSales(type) {
 
   let sales = [];
 
-  let sales_ids = (await conn.query('SELECT saleId FROM sales WHERE done = 0')).map(e => e.sale_id);
+  let sales_ids = (await conn.query('SELECT saleId FROM sales WHERE done = 0')).map(e => e.saleId);
 
   console.log(sales_ids);
 
@@ -339,9 +339,9 @@ async function getSales(type) {
           'SELECT name FROM sales JOIN clients ON sales.clientId = clients.clientId WHERE saleId = ?',
           [sale_id]
         ))[0].name,
-        products: (await conn.query('SELECT name, capacity, s.quantity' +
-          ' FROM sales_info s JOIN products p on s.product_id = p.product_id ' +
-          ' WHERE sale_id = ?', [sale_id]))
+        products: (await conn.query('SELECT name, mass, s.quantity' +
+          ' FROM salesInfo s JOIN products p on s.productId = p.id ' +
+          ' WHERE saleId = ?', [sale_id]))
       });
     } catch (e) {
       console.log(e);
@@ -357,7 +357,7 @@ async function updateSale(type, sale_id) {
   const conn = await pool[type].getConnection();
 
   try {
-    await conn.query('CALL update_sale(?)', [sale_id]);
+    await conn.query('CALL updateSale(?)', [sale_id]);
     conn.end();
   } catch (e) {
     console.log(e);
