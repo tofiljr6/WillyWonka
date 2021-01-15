@@ -26,7 +26,7 @@ function fillSaleTable() {
   }
 
   for (let sale of data) {
-    if (sale.sale_id.toString() === saleSelect.value.toString()) {
+    if (sale.saleId.toString() === saleSelect.value.toString()) {
       let table = objArrayToTable(sale.products);
       saleInfoDiv.appendChild(table);
       break;
@@ -46,7 +46,7 @@ function sendRequest() {
     }
   };
   xhr.send(JSON.stringify({
-    sale_id: saleSelect.value
+    sale_id: saleSelect.value // todo
   }));
 }
 

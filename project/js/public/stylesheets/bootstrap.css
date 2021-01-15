@@ -2612,12 +2612,13 @@ fieldset:disabled a.btn {
 .btn-primary {
   color: #fff;
   /*background-color: #375a7f;*/
-  background-color: #3a2500;
+  background-color: #17000b;
   border-color: #375a7f;
 }
 
 .btn-primary:hover {
   color: #fff;
+  /*background-color: #55e805;*/
   background-color: #2b4764;
   border-color: #28415b;
 }

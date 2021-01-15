@@ -33,7 +33,7 @@ function addNewProductField () {
   let labeledContainer = document.createElement('div');
   let container = document.createElement('div');
   let select = document.createElement('select');
-  let types = ['Beers', 'Wines', 'Liquors'];
+  let types = ['candies', 'chocolateBars', 'chocolate', 'jellyCandies'];
   let defaultOption = document.createElement('option');
 
   let label = document.createElement('label');
@@ -120,14 +120,15 @@ function setSecondarySelect(container) {
   });
 
   for (let obj of data.productsData) {
-    if (container.children[0].value.toLowerCase() === obj.name) {
+    // if (container.children[0].value.toLowerCase() === obj.name) {
+    if (container.children[0].value === obj.name) {
       for (let t of obj.data) {
         let option = document.createElement('option');
         option.value = JSON.stringify({
-          product_id: t.product_id,
+          product_id: t.id,
           quantity: t.quantity
         });
-        option.appendChild(document.createTextNode(t.name + " " + t.capacity + "ml"));
+        option.appendChild(document.createTextNode(t.name + " " + t.mass + "g"));
         nameSelect.appendChild(option);
       }
     }
@@ -146,7 +147,7 @@ function updateProductsData(container) {
   try {
     saleData.products[container.id] = {
       category: container.children[0].value,
-      product_id: JSON.parse(container.children[1].value).product_id,
+      product_id: JSON.parse(container.children[1].value).id,
       quantity: container.children[2].value
     };
     console.log('Products data of sale data updated.');

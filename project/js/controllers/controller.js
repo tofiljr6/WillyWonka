@@ -320,13 +320,13 @@ async function updateSupply(type, supply_id) {
     throw new Error(e.message);
   }
 }
-/*
+
 async function getSales(type) {
   const conn = await pool[type].getConnection();
 
   let sales = [];
 
-  let sales_ids = (await conn.query('SELECT sale_id FROM sales WHERE done = 0')).map(e => e.sale_id);
+  let sales_ids = (await conn.query('SELECT saleId FROM sales WHERE done = 0')).map(e => e.sale_id);
 
   console.log(sales_ids);
 
@@ -334,9 +334,9 @@ async function getSales(type) {
     try {
       sales.push({
         sale_id: sale_id,
-        date: (await conn.query('SELECT date FROM sales WHERE sale_id = ?', [sale_id]))[0].date,
+        date: (await conn.query('SELECT date FROM sales WHERE saleId = ?', [sale_id]))[0].date,
         client: (await conn.query(
-          'SELECT name FROM sales JOIN clients ON sales.client_id = clients.client_id WHERE sale_id = ?',
+          'SELECT name FROM sales JOIN clients ON sales.clientId = clients.clientId WHERE saleId = ?',
           [sale_id]
         ))[0].name,
         products: (await conn.query('SELECT name, capacity, s.quantity' +
@@ -365,7 +365,7 @@ async function updateSale(type, sale_id) {
     throw new Error(e.message);
   }
 }
-*/
+
 async function getProducts(type) {
   const conn = await pool[type].getConnection();
   const types = ['chocolates', 'candies', 'jellyCandies', 'chocolateBars'];
@@ -489,5 +489,6 @@ async function deleteUser(user) {
 module.exports = {
   addSupplier, addUser, login, addClient, addChocolate, addCandy, addJellyCandy,
   addChocolateBar, customQuery, getSchema, getUsers, deleteUser, restore, getBackups, createBackup, quantityOnDate,
-  getProducts, planSale, getPlanSaleData, getNames, planSupply, updateSupply, getSupplies
+  getProducts, planSale, getPlanSaleData, getNames, planSupply, updateSupply, getSupplies,
+  getSales, updateSale
 }

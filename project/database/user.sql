@@ -39,7 +39,7 @@ GRANT EXECUTE ON PROCEDURE wedel.addChocolate TO manager;
 GRANT EXECUTE ON PROCEDURE wedel.addCandy TO manager;
 GRANT EXECUTE ON PROCEDURE wedel.addJellyCandy TO manager;
 GRANT EXECUTE ON PROCEDURE wedel.addChocolateBar TO manager;
-GRANT INSERT ON wedel.suppliers TO manager;
+GRANT INSERT ON wedel.supplies TO manager;
 
 GRANT INSERT ON wedel.users TO admin;
 GRANT DELETE ON wedel.users TO admin;
