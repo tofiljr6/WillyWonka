@@ -393,14 +393,29 @@ async function quantityOnDate(type, product_id, date) {
   const conn = await pool[type].getConnection();
   let quantity = null;
 
-  await conn.query('SELECT quantityOnDate(?, ?) as quantity', [product_id, date])
-    .then(e => {
-      quantity = e[0].quantity;
-    }).catch(e => {
-      console.log(e);
-    });
+  console.log(date);
 
-  conn.end();
+  try {
+    // if (date > Date.now()) {
+      await conn.query('SELECT quantityOnDate(?, ?) as quantity', [product_id, date])
+          .then(e => {
+            quantity = e[0].quantity;
+          }).catch(e => {
+            console.log(e);
+          });
+      conn.end();
+
+
+
+    // } else {
+    //   quantity = "please enter future date";
+    // }
+  } catch (e) {
+
+    console.log(e);
+    conn.end();
+    return quantity;
+  }
   return quantity;
 }
 
@@ -423,7 +438,6 @@ function createBackup() {
 async function getBackups() {
   return await fs.readdirSync('./backups') || [];
 }
-
 
 function restore(backupName) {
   exec(`mysql -u admin -padminpassword wedel < ./backups/${backupName}`, (err, stdout, stderr) => {
@@ -468,7 +482,6 @@ async function customQuery(queryData, type) {
   return result;
 }
 
-
 async function getUsers() {
   const conn = await pool['admin'].getConnection();
   const query = 'SELECT login FROM users';
@@ -477,7 +490,6 @@ async function getUsers() {
   console.log(result);
   return result;
 }
-
 
 async function deleteUser(user) {
   const conn = await pool['admin'].getConnection();

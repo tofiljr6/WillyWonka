@@ -17,6 +17,7 @@ function setSecondarySelect() {
   let selections = document.getElementById('selections');
   let typeSelect = document.getElementById('typeSelect');
   let nameSelect = document.createElement('select');
+  // let dateInput = document.getElementById('dateInput');
 
   typeSelect.style.marginRight = '10px';
   nameSelect.style.marginLeft = '10px';
@@ -32,7 +33,7 @@ function setSecondarySelect() {
     if (type.name === typeSelect.value) {
       for (let product of type.data) {
         let option = document.createElement('option');
-        option.value = product.id; // todo!!!!!
+        option.value = product.id;
         option.appendChild(document.createTextNode(product.name));
         nameSelect.appendChild(option);
       }

@@ -35,6 +35,7 @@ function fillSaleTable() {
 }
 
 function sendRequest() {
+  console.log("MEFMEINBOABFIHBIBEIBEIFBABHbJJSJSJSJ");
   let xhr = new XMLHttpRequest();
   let saleSelect = document.getElementById('saleSelect');
   xhr.open('POST', '/update_sale', true);

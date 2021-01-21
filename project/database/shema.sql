@@ -2,8 +2,9 @@ CREATE DATABASE if not exists wedel;
 
 USE wedel;
 
-set foreign_key_checks = 1;
-drop table products;
+# set foreign_key_checks = 1;
+# drop table suppliesInfo;
+
 
 
 CREATE TABLE products (
@@ -15,7 +16,7 @@ CREATE TABLE products (
     quantity   int UNSIGNED
 );
 
-# delete from supplies where done like '%';
+# delete from chocolates where name like '%';
 
 CREATE TABLE chocolates (
     id         int NOT NULL PRIMARY KEY,
@@ -109,6 +110,7 @@ CREATE TABLE salesInfo (
     FOREIGN KEY (saleId) REFERENCES sales (saleId) ON DELETE CASCADE
 );
 
+# drop procedure addProduct;
 
 DELIMITER //
 CREATE PROCEDURE addProduct(IN type_in ENUM('chocolate', 'candy', 'jelly candy', 'chocolate bar'),
@@ -127,6 +129,8 @@ BEGIN
 END //
 DELIMITER ;
 
+# drop function chocolateAlreadyExists;
+
 DELIMITER //
 CREATE FUNCTION chocolateAlreadyExists(name VARCHAR(50), producer VARCHAR(50), type ENUM('bitter', 'milky', 'white'), flavour VARCHAR(50),
                                        mass INT UNSIGNED) RETURNS BOOLEAN
@@ -144,6 +148,8 @@ BEGIN
 END //
 DELIMITER ;
 
+# drop procedure innerAddChocolate;
+
 DELIMITER //
 CREATE PROCEDURE innerAddChocolate(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50), IN type_in ENUM('bitter', 'milky', 'white'),
                                    IN flavour_in varchar(50), mass_in INT UNSIGNED)
@@ -159,6 +165,8 @@ BEGIN
            );
 END //
 DELIMITER ;
+
+# drop procedure addChocolate;
 
 DELIMITER //
 CREATE OR REPLACE PROCEDURE addChocolate(IN name VARCHAR(50), IN producer VARCHAR(50), IN type ENUM('bitter', 'milky', 'white'),
@@ -177,6 +185,8 @@ BEGIN
 END //
 DELIMITER ;
 
+# drop function candyAlreadyExists;
+
 DELIMITER //
 CREATE FUNCTION candyAlreadyExists(name VARCHAR(50), producer VARCHAR(50), type VARCHAR(50), flavour VARCHAR(50),
                                    mass INT UNSIGNED) RETURNS BOOLEAN
@@ -193,6 +203,8 @@ BEGIN
     ));
 END //
 DELIMITER ;
+
+# drop procedure innerAddCandy;
 
 DELIMITER //
 CREATE PROCEDURE innerAddCandy(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50), IN type_in VARCHAR(50),
@@ -227,6 +239,8 @@ BEGIN
 END //
 DELIMITER ;
 
+# drop function jellyCandyAlreadyExists;
+
 DELIMITER //
 CREATE FUNCTION jellyCandyAlreadyExists(name VARCHAR(50), producer VARCHAR(50), type VARCHAR(50), flavour VARCHAR(50),
                                         mass INT UNSIGNED) RETURNS BOOLEAN
@@ -244,6 +258,7 @@ BEGIN
 END //
 DELIMITER ;
 
+drop procedure innerAddJellyCandy;
 
 DELIMITER //
 CREATE PROCEDURE innerAddJellyCandy(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50), IN type_in VARCHAR(50),
@@ -278,6 +293,8 @@ BEGIN
 END //
 DELIMITER ;
 
+# drop function chocolateBarAlreadyExists;
+
 DELIMITER //
 CREATE FUNCTION chocolateBarAlreadyExists(name VARCHAR(50), producer VARCHAR(50), flavour VARCHAR(50),
                                           mass INT UNSIGNED) RETURNS BOOLEAN
@@ -293,6 +310,8 @@ BEGIN
     ));
 END //
 DELIMITER ;
+
+# drop procedure innerAddChocolateBar;
 
 DELIMITER //
 CREATE PROCEDURE innerAddChocolateBar(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50),
@@ -353,10 +372,6 @@ BEGIN
 END //
 DELIMITER ;
 
-drop trigger updateQuantitySales;
-show triggers;
-
-
 DELIMITER //
 CREATE TRIGGER updateQuantitySales AFTER UPDATE ON sales FOR EACH ROW
 BEGIN
@@ -371,6 +386,8 @@ BEGIN
 END //
 DELIMITER ;
 
+select quantityOnDate(4, '2021-01-13') as quantity;
+
 DELIMITER //
 CREATE OR REPLACE FUNCTION quantityOnDate(in_product_id INT, in_date DATE) RETURNS INT
 BEGIN
@@ -383,10 +400,9 @@ BEGIN
 
     SELECT SUM(quantity)
     FROM suppliesInfo si JOIN supplies s ON si.supplyId = s.supplyId
-    WHERE si.productId = in_product_id AND
-          (date BETWEEN NOW() AND in_date AND
-           NOT done) OR (si.productId = in_product_id AND NOT done)
+    WHERE si.productId = in_product_id AND (date BETWEEN NOW() AND in_date AND NOT done)
     INTO supplied;
+#     OR (si.productId = in_product_id AND NOT done)
 
     SELECT SUM(quantity)
     FROM salesInfo si JOIN sales s ON si.saleId = s.saleId
@@ -409,12 +425,16 @@ BEGIN
 END //
 DELIMITER ;
 
+# drop procedure updateSupply;
+
 DELIMITER //
 CREATE PROCEDURE updateSupply(IN in_supply_id INT)
 BEGIN
     UPDATE supplies SET done = 1 WHERE supplyId = in_supply_id;
 END //
 DELIMITER ;
+
+drop procedure updateSale;
 
 DELIMITER //
 CREATE PROCEDURE updateSale(IN in_sale_id INT)
@@ -453,3 +473,5 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
+
+show triggers;

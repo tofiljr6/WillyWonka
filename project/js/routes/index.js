@@ -286,8 +286,7 @@ router.post('/update_sale', async function (req, res) {
       })
       .catch(e => {
         res.json({
-          succeeded: 0,
-          message: e.message
+          succeeded: 0, message: e.message
         });
       });
   } else {
@@ -385,7 +384,7 @@ router.get('/show-quantity', async function (req, res) {
 
 router.post('/show_quantity', async function (req, res) {
   if (req.session.login) {
-    controller.quantityOnDate(req.session.type, req.body.product_id, req.body.date) //todo!!!
+    controller.quantityOnDate(req.session.type, req.body.product_id, req.body.date)
       .then(e => {
         res.json({quantity: e});
       });
