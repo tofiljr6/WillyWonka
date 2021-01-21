@@ -360,7 +360,7 @@ BEGIN
 END //
 DELIMITER ;
 
-show triggers;
+# show triggers;
 
 DELIMITER //
 CREATE TRIGGER deleteProducts AFTER DELETE ON products FOR EACH ROW
@@ -474,4 +474,4 @@ BEGIN
 END //
 DELIMITER ;
 
-show triggers;
+# show triggers;
