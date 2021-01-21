@@ -258,7 +258,7 @@ BEGIN
 END //
 DELIMITER ;
 
-drop procedure innerAddJellyCandy;
+# drop procedure innerAddJellyCandy;
 
 DELIMITER //
 CREATE PROCEDURE innerAddJellyCandy(IN id_in INT, IN name_in VARCHAR(50), IN producer_in VARCHAR(50), IN type_in VARCHAR(50),
@@ -386,7 +386,7 @@ BEGIN
 END //
 DELIMITER ;
 
-select quantityOnDate(4, '2021-01-13') as quantity;
+# select quantityOnDate(4, '2021-01-13') as quantity;
 
 DELIMITER //
 CREATE OR REPLACE FUNCTION quantityOnDate(in_product_id INT, in_date DATE) RETURNS INT
@@ -434,7 +434,7 @@ BEGIN
 END //
 DELIMITER ;
 
-drop procedure updateSale;
+# drop procedure updateSale;
 
 DELIMITER //
 CREATE PROCEDURE updateSale(IN in_sale_id INT)
